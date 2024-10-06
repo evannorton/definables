@@ -1,11 +1,14 @@
 import { customAlphabet } from "nanoid";
 
-const definables: Map<string, Map<string, Definable>> = new Map();
-(
-  window as unknown as {
+declare global {
+  interface Window {
     definables: Map<string, Map<string, Definable>>;
   }
-).definables = definables;
+}
+const definables: Map<string, Map<string, Definable>> = new Map();
+if (window as unknown as boolean) {
+  window.definables = definables;
+}
 const validIDCharacters: string[] = [
   "a",
   "b",
@@ -128,13 +131,7 @@ export const getDefinables = <T extends Definable>(
   definables
     .get(prototype.name)
     ?.forEach((definable: Definable, id: string): void => {
-      if (definable instanceof prototype) {
-        retrievedDefinables.set(id, definable);
-      } else {
-        throw new Error(
-          `Definable with ID "${id}" is not an instance of ${prototype.name}.`,
-        );
-      }
+      retrievedDefinables.set(id, definable as T);
     });
   return retrievedDefinables;
 };

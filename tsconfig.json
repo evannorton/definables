@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "incremental": false,
-    "target": "ES2015",
+    "target": "ES2016",
     "module": "commonjs",
     "outDir": "lib",
     "strict": true,
@@ -14,9 +14,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "lib": [
-      "es2016"
-    ]
   },
   "include": [
     "src/**/*"
