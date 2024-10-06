@@ -5,7 +5,8 @@ declare global {
     definables: Map<string, Map<string, Definable>>;
   }
 }
-const definables: Map<string, Map<string, Definable>> = new Map();
+
+export const definables: Map<string, Map<string, Definable>> = new Map();
 if (window as unknown as boolean) {
   window.definables = definables;
 }
