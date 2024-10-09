@@ -3,6 +3,7 @@
     "name": "definables",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
+    "type": "module",
     "scripts": {
         "build": "tsc",
         "dev": "tsc --watch",
@@ -24,6 +25,6 @@
         "node": "20.12.2"
     },
     "dependencies": {
-        "nanoid": "^5.0.7"
+        "nanoid": "5.0.7"
     }
 }
