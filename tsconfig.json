@@ -2,7 +2,7 @@
   "compilerOptions": {
     "incremental": false,
     "target": "ES2016",
-    "module": "ES2015",
+    "module": "commonjs",
     "outDir": "lib",
     "strict": true,
     "noUncheckedIndexedAccess": true,

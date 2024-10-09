@@ -1,4 +1,4 @@
-import { customAlphabet } from "nanoid";
+import { v4 as uuidv4 } from "uuid";
 
 declare global {
   interface Window {
@@ -7,54 +7,10 @@ declare global {
 }
 
 export const definables: Map<string, Map<string, Definable>> = new Map();
-if (window as unknown as boolean) {
+if (typeof window !== "undefined") {
   window.definables = definables;
 }
-const validIDCharacters: string[] = [
-  "a",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "o",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
-  "u",
-  "v",
-  "w",
-  "x",
-  "y",
-  "z",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "0",
-  "-",
-  "/",
-];
-const randomIDLength: number = 21;
-const getRandomID: () => string = customAlphabet(
-  validIDCharacters.join(""),
-  randomIDLength,
-);
+const getRandomID = (): string => uuidv4();
 
 export abstract class Definable {
   protected static _createOrderCounter: number = 0;
@@ -63,18 +19,6 @@ export abstract class Definable {
 
   public constructor(id?: string) {
     this._id = id ?? getRandomID();
-    if (
-      this._id
-        .split("")
-        .some(
-          (character: string): boolean =>
-            validIDCharacters.includes(character) === false,
-        )
-    ) {
-      throw new Error(
-        `${this.constructor.name} "${this._id}" has an invalid id.`,
-      );
-    }
     if (definables.has(this.constructor.name) === false) {
       definables.set(this.constructor.name, new Map());
     }
