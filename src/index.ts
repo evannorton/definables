@@ -19,6 +19,7 @@ export {
   Definable,
   definableExists,
   DefinableReference,
+  definables,
   getDefinable,
   getDefinables,
   getDefinablesCount,
