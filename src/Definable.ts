@@ -1,10 +1,14 @@
+import { DefinableReference } from "./DefinableReference";
+import { definables } from "./definables";
+import { getRandomDefinableID } from "./getRandomDefinableID";
+
 export abstract class Definable {
   protected static _createOrderCounter: number = 0;
   protected _createOrder: number;
   protected readonly _id: string;
 
   public constructor(id?: string) {
-    this._id = id ?? getRandomID();
+    this._id = id ?? getRandomDefinableID();
     if (definables.has(this.constructor.name) === false) {
       definables.set(this.constructor.name, new Map());
     }
